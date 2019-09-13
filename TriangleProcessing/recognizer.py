@@ -399,7 +399,7 @@ class TriRecognizer:
             imgCrossTris = imgOutput.copy()
             imgHeight = imgOutput.copy()
 
-        _, contours, _ = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
         if params.outputState == True:
             cv2.drawContours(imgContours, contours, -1, stateColor, stateLineWidth)

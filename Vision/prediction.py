@@ -1,5 +1,6 @@
 # pip install Pillow requests
 # pip install --upgrade google-cloud-vision
+# pip install google-cloud-automl
 import psycopg2
 import json
 import boto3

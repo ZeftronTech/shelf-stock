@@ -115,7 +115,7 @@ def processImages(rackNum):
             image_path = temp_images_path + path + folder + '/' + '%01d.jpg'
             output_path = temp_images_path + path + folder + '/' + videoName + '-Raw.mp4'
             output_compressed_path = temp_images_path + path + folder + '/' + videoName + '.mp4'
-            makeVideo = 'ffmpeg -r {0} -f image2 -start_number 0 -i {1} -codec:v prores -profile:v 2 {2}'.format(
+            makeVideo = 'ffmpeg -r {0} -f image2 -start_number 0 -i {1} -codec:v libx264 {2}'.format(
                 fps, image_path, output_path)
             compressVideo = 'ffmpeg -i {0} -c:v libx264 -preset slow -crf {1} -c:a copy -pix_fmt yuv420p {2}'.format(output_path, HIGH_COMPRESSION, output_compressed_path)
             print('Making Video ')
@@ -123,9 +123,9 @@ def processImages(rackNum):
             process = subprocess.Popen(makeVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             stdout, stderr = process.communicate()
             #print('Output- ')
-            #print(output)
+            #print(stdout)
             #print('Error- ')
-            #print(err)
+            #print(stderr)
             print(compressVideo)
             compress_process = subprocess.Popen(compressVideo, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
             stdout, stderr = compress_process.communicate()
@@ -288,7 +288,8 @@ def main(argv):
         if len(racknums) > 0:
             for racknum in racknums:
                 processImages(racknum[0])
-
+    if checkFileExists(temp_images_path):
+        removeTempFolder()
 
 # call main function
 if __name__ == "__main__":
