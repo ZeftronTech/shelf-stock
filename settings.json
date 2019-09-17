@@ -6,7 +6,7 @@
     "database" : "smartrack"
   },
   "s3" : {
-    "url" : "https://smart-rack-bucket-.s3.amazonaws.com/",
+    "url" : "https://smart-rack-bucket-store.s3.amazonaws.com/",
     "bucket" : "smart-rack-bucket-store"
   },
   "server" : {
